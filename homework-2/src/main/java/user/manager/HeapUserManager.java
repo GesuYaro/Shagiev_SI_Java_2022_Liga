@@ -45,11 +45,17 @@ public class HeapUserManager implements UserManager {
 
     @Override
     public void updateUser(int id, User user) {
+        user.setId(id);
         for (ListIterator<User> it = userList.listIterator(); it.hasNext(); ) {
             if (it.next().getId() == id) {
                 it.set(user);
             }
         }
+    }
+
+    @Override
+    public void clear() {
+        userList.clear();
     }
 
 }

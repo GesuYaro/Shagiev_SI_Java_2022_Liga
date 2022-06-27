@@ -69,11 +69,27 @@ public class HeapTaskManager implements TaskManager {
 
     @Override
     public void updateTask(int id, Task task) {
+        task.setId(id);
         for (ListIterator<Task> it = tasksList.listIterator(); it.hasNext(); ) {
             if (it.next().getId() == id) {
                 it.set(task);
             }
         }
+    }
+
+    @Override
+    public void updateStatus(int id, TaskStatus status) {
+        for (ListIterator<Task> it = tasksList.listIterator(); it.hasNext(); ) {
+            Task current = it.next();
+            if (current.getId() == id) {
+                current.setStatus(status);
+            }
+        }
+    }
+
+    @Override
+    public void clearAll() {
+        tasksList.clear();
     }
 
 }

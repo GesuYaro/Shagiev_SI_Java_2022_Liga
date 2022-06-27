@@ -10,5 +10,6 @@ public interface UserManager {
     void deleteUser(int id);
     List<User> getUsers();
     void updateUser(int id, User user);
+    void clear();
 
 }

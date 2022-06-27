@@ -12,7 +12,9 @@ public interface TaskManager {
     List<Task> getTasksOrderedByDate(int userId);
     void addTask(Task task);
     void clear(int userId);
+    void clearAll();
     void delete(int id);
     void updateTask(int id, Task task);
+    void updateStatus(int id, TaskStatus status);
 
 }
