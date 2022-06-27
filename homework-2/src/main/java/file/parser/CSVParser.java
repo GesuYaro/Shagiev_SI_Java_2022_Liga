@@ -1,5 +1,6 @@
 package file.parser;
 
+import com.opencsv.ICSVParser;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 
@@ -17,6 +18,7 @@ public class CSVParser {
             CsvToBean<T> csvToBean = new CsvToBeanBuilder<T>(reader)
                     .withType(clazz)
                     .withIgnoreLeadingWhiteSpace(true)
+                    .withQuoteChar(ICSVParser.DEFAULT_QUOTE_CHARACTER)
                     .build();
             return csvToBean.parse();
         }

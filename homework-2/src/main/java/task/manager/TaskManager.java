@@ -8,6 +8,7 @@ import java.util.List;
 public interface TaskManager {
 
     List<Task> getTasks(int userId);
+    List<Task> getAllTasks();
     List<Task> getTasksByStatus(int userId, TaskStatus status);
     List<Task> getTasksOrderedByDate(int userId);
     void addTask(Task task);

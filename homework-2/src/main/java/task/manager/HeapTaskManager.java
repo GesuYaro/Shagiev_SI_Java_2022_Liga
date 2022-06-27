@@ -36,6 +36,11 @@ public class HeapTaskManager implements TaskManager {
     }
 
     @Override
+    public List<Task> getAllTasks() {
+        return tasksList;
+    }
+
+    @Override
     public List<Task> getTasksByStatus(int userId, TaskStatus status) {
         return tasksList.stream()
                 .filter(task -> task.getUserId() == userId && task.getStatus().equals(status))
