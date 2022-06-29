@@ -4,7 +4,6 @@ import console.Console;
 import console.commands.*;
 import file.parser.CSVParser;
 import file.writer.CSVFilePrinter;
-import file.writer.CSVPrinter;
 import task.InteractiveTaskBuilder;
 import task.Task;
 import task.manager.HeapTaskManager;
@@ -51,7 +50,7 @@ public class Main {
                     consoleScanner,
                     writer);
             console.run();
-        } catch (IOException | RuntimeException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
