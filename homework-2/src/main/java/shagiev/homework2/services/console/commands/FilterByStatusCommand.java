@@ -17,7 +17,6 @@ public class FilterByStatusCommand implements Command {
 
     private final TaskFactory taskFactory;
     private final TaskManager taskManager;
-    private final String description = "{id} show user's tasks filtered by status";
     private final Writer writer;
 
     @Override
@@ -41,13 +40,13 @@ public class FilterByStatusCommand implements Command {
     }
 
     @Override
-    public String getName() {
-        return "filter_by_status";
+    public CommandName getName() {
+        return CommandName.FILTER_BY_STATUS;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "{id} show user's tasks filtered by status";
     }
 
 }

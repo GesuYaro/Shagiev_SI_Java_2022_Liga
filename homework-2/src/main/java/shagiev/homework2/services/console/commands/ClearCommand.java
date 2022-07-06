@@ -11,7 +11,6 @@ public class ClearCommand implements Command {
 
     private final TaskManager taskManager;
     private final UserManager userManager;
-    private final String description = "{id} clear tasks for user, or all data if id is not provided";
 
     @Override
     public boolean execute(String[] args) {
@@ -26,13 +25,13 @@ public class ClearCommand implements Command {
     }
 
     @Override
-    public String getName() {
-        return "clear";
+    public CommandName getName() {
+        return CommandName.CLEAR;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "{id} clear tasks for user, or all data if id is not provided";
     }
 
 }

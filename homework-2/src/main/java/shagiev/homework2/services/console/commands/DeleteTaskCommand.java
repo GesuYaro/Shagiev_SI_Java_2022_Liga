@@ -8,7 +8,6 @@ import shagiev.homework2.services.console.managers.TaskManager;
 @Component
 public class DeleteTaskCommand implements Command{
 
-    private final String description = "{id} delete task";
     private final TaskManager taskManager;
 
     @Override
@@ -22,13 +21,13 @@ public class DeleteTaskCommand implements Command{
     }
 
     @Override
-    public String getName() {
-        return "delete_task";
+    public CommandName getName() {
+        return CommandName.DELETE_TASK;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "{id} delete task";
     }
 
 }

@@ -5,20 +5,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class ExitCommand implements Command {
 
-    private final String description = "Exit program (without saving)";
-
     @Override
     public boolean execute(String[] args) {
         return true;
     }
 
     @Override
-    public String getName() {
-        return "exit";
+    public CommandName getName() {
+        return CommandName.EXIT_COMMAND;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "Exit program (without saving)";
     }
 }

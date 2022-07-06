@@ -9,7 +9,6 @@ import shagiev.homework2.services.console.managers.UserManager;
 @Component
 public class UpdateUserCommand implements Command {
 
-    private final String description = "{id} update user info";
     private final UserManager userManager;
     private final UserFactory userFactory;
 
@@ -19,18 +18,19 @@ public class UpdateUserCommand implements Command {
             throw new NotEnoughArgumentsException();
         }
         int id = Integer.parseInt(args[0]);
-        userManager.updateUser(id, userFactory.getUser(args[1]));
+        String username = args[1];
+        userManager.updateUser(id, userFactory.getUser(username));
         return false;
     }
 
     @Override
-    public String getName() {
-        return "update_user";
+    public CommandName getName() {
+        return CommandName.UPDATE_USER;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "{id} update user info";
     }
 
 }

@@ -10,28 +10,33 @@ import shagiev.homework2.services.console.managers.TaskManager;
 @Component
 public class UpdateTaskCommand implements Command {
 
-    private final String description = "{id} update task";
     private final TaskManager taskManager;
     private final TaskFactory taskFactory;
 
     @Override
     public boolean execute(String[] args) {
-        if (args == null || args.length < 7) {
+        if (args == null || args.length < 6) {
             throw new NotEnoughArgumentsException();
         }
         int id = Integer.parseInt(args[0]);
-        taskManager.updateTask(id, taskFactory.getTask(args[1], args[2], args[3], args[4], args[5], args[6]));
+        String idStr = args[0];
+        String header = args[1];
+        String description = args[2];
+        String date = args[3];
+        String status = args[4];
+        String userId = args[5];
+        taskManager.updateTask(id, taskFactory.getTask(idStr, header, description, date, status, userId));
         return false;
     }
 
     @Override
-    public String getName() {
-        return "update_task";
+    public CommandName getName() {
+        return CommandName.UPDATE_TASK;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "{id} update task";
     }
 
 }

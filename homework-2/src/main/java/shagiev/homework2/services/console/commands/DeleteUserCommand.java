@@ -8,7 +8,6 @@ import shagiev.homework2.services.console.managers.UserManager;
 @Component
 public class DeleteUserCommand implements Command {
 
-    private final String description = "{id} delete user";
     private final UserManager userManager;
 
     @Override
@@ -22,13 +21,13 @@ public class DeleteUserCommand implements Command {
     }
 
     @Override
-    public String getName() {
-        return "delete_user";
+    public CommandName getName() {
+        return CommandName.DELETE_USER;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "{id} delete user";
     }
 
 }

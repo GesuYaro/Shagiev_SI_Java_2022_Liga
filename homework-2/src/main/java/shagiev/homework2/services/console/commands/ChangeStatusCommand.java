@@ -9,7 +9,6 @@ import shagiev.homework2.services.console.managers.TaskManager;
 @Component
 public class ChangeStatusCommand implements Command {
 
-    private final String description = "{id} change command status";
     private final TaskManager taskManager;
     private final TaskFactory taskFactory;
 
@@ -24,13 +23,13 @@ public class ChangeStatusCommand implements Command {
     }
 
     @Override
-    public String getName() {
-        return "change_status";
+    public CommandName getName() {
+        return CommandName.CHANGE_STATUS;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "{id} change command status";
     }
 
 }

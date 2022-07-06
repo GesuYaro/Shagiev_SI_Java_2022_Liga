@@ -9,7 +9,6 @@ import shagiev.homework2.services.console.managers.UserManager;
 @Component
 public class AddUserCommand implements Command {
 
-    private final String description = "add new user";
     private final UserFactory userFactory;
     private final UserManager userManager;
 
@@ -18,18 +17,19 @@ public class AddUserCommand implements Command {
         if (args == null || args.length < 1) {
             throw new NotEnoughArgumentsException();
         }
-        userManager.addUser(userFactory.getUser(args[0]));
+        String username = args[0];
+        userManager.addUser(userFactory.getUser(username));
         return false;
     }
 
     @Override
-    public String getName() {
-        return "add_user";
+    public CommandName getName() {
+        return CommandName.ADD_USER;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "add new user";
     }
 
 }

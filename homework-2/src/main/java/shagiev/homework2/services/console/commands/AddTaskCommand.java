@@ -10,14 +10,18 @@ import shagiev.homework2.services.console.managers.TaskManager;
 @Component
 public class AddTaskCommand implements Command {
 
-    private final String description = "add new task";
     private final TaskFactory taskFactory;
     private final TaskManager taskManager;
 
     @Override
     public boolean execute(String[] args) {
         if (args != null && args.length >= 5) {
-            taskManager.addTask(taskFactory.getTask("0", args[0], args[1], args[2], args[3], args[4]));
+            String header = args[0];
+            String description = args[1];
+            String date = args[2];
+            String status = args[3];
+            String userId = args[4];
+            taskManager.addTask(taskFactory.getTask("0", header, description, date, status, userId));
         } else {
             throw new NotEnoughArgumentsException();
         }
@@ -25,13 +29,13 @@ public class AddTaskCommand implements Command {
     }
 
     @Override
-    public String getName() {
-        return "add_task";
+    public CommandName getName() {
+        return CommandName.ADD_TASK;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "add new task";
     }
 
 }

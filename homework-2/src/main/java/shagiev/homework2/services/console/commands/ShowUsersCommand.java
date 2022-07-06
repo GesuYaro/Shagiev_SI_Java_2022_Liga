@@ -12,7 +12,6 @@ import java.io.Writer;
 @Component
 public class ShowUsersCommand implements Command {
 
-    private final String description = "show users info";
     private final UserManager userManager;
     private final Writer writer;
 
@@ -31,13 +30,13 @@ public class ShowUsersCommand implements Command {
     }
 
     @Override
-    public String getName() {
-        return "show_users";
+    public CommandName getName() {
+        return CommandName.SHOW_USERS;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "show users info";
     }
 
 }

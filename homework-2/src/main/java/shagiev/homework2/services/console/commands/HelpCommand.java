@@ -13,8 +13,7 @@ import java.util.Map;
 public class HelpCommand implements Command {
 
     private final Writer writer;
-    private final Map<String, Command> commandMap;
-    private final String description = "Show commands";
+    private final Map<CommandName, Command> commandMap;
 
     public HelpCommand(Writer writer, List<Command> commandList) {
         this.writer = writer;
@@ -27,8 +26,8 @@ public class HelpCommand implements Command {
     @Override
     public boolean execute(String[] args) {
         try {
-            for (String commandName : commandMap.keySet()) {
-                writer.write(commandName);
+            for (CommandName commandName : commandMap.keySet()) {
+                writer.write(commandName.name());
                 writer.write(" | ");
                 if (commandMap.get(commandName).getDescription() != null) {
                     writer.write(commandMap.get(commandName).getDescription());
@@ -45,12 +44,12 @@ public class HelpCommand implements Command {
     }
 
     @Override
-    public String getName() {
-        return "help";
+    public CommandName getName() {
+        return CommandName.HELP;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "Show commands";
     }
 }

@@ -3,6 +3,7 @@ package shagiev.homework2.services.console;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import shagiev.homework2.services.console.commands.Command;
+import shagiev.homework2.services.console.commands.CommandName;
 import shagiev.homework2.services.console.commands.NotEnoughArgumentsException;
 
 import java.io.*;
@@ -14,7 +15,7 @@ import java.util.Map;
 @Service
 public class CommandHandlerImpl implements CommandHandler {
 
-    private final Map<String, Command> commandMap;
+    private final Map<CommandName, Command> commandMap;
     private final ByteArrayOutputStream byteArrayOutputStream;
 
     public CommandHandlerImpl(List<Command> commandList, ByteArrayOutputStream byteArrayOutputStream) {
@@ -36,16 +37,23 @@ public class CommandHandlerImpl implements CommandHandler {
                     args = new String[commandAndArgs.length - 1];
                     System.arraycopy(commandAndArgs, 1, args, 0, commandAndArgs.length - 1);
                 }
-                if (commandMap.containsKey(commandPart)) {
-                    try {
-                        commandMap.get(commandAndArgs[0]).execute(args);
-                    } catch (NotEnoughArgumentsException | NumberFormatException e) {
-                        writer.write("Argument error. ");
-                        writer.write(e.getMessage());
-                        writer.write("\n");
+                try {
+                    if (commandMap.containsKey(CommandName.valueOf(commandPart.toUpperCase()))) {
+                        try {
+                            commandMap.get(CommandName.valueOf(commandPart.toUpperCase())).execute(args);
+                        } catch (NotEnoughArgumentsException | NumberFormatException e) {
+                            writer.write("Argument error. ");
+                            writer.write(e.getMessage());
+                            writer.write("\n");
+                            writer.flush();
+                        }
+                    } else {
+                        writer.write("Command ");
+                        writer.write(commandPart);
+                        writer.write(" not implemented\n");
                         writer.flush();
                     }
-                } else {
+                } catch (IllegalArgumentException e) {
                     writer.write("Command ");
                     writer.write(commandPart);
                     writer.write(" not found\n");

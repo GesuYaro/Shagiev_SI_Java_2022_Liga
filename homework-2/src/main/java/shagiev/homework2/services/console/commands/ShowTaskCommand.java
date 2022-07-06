@@ -12,7 +12,6 @@ import java.io.Writer;
 @Component
 public class ShowTaskCommand implements Command {
 
-    private final String description = "{id} show tasks for user";
     private final TaskManager taskManager;
     private final Writer writer;
 
@@ -35,13 +34,13 @@ public class ShowTaskCommand implements Command {
     }
 
     @Override
-    public String getName() {
-        return "show_tasks";
+    public CommandName getName() {
+        return CommandName.SHOW_TASKS;
     }
 
     @Override
     public String getDescription() {
-        return description;
+        return "{id} show tasks for user";
     }
 
 }
