@@ -62,6 +62,7 @@ public class TaskServiceImpl implements TaskService {
         taskRepo.updateStatusById(id, status);
     }
 
+    @Transactional
     @Override
     public void updateTask(int id, String header, String description, Date date, TaskStatus taskStatus, int userId) {
         taskRepo.updateTaskById(id, header, description, date, taskStatus, userId);

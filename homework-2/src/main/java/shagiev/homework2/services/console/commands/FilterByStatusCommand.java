@@ -21,12 +21,12 @@ public class FilterByStatusCommand implements Command {
 
     @Override
     public boolean execute(String[] args) {
-        if (args == null || args.length < 1) {
+        if (args == null || args.length < 2) {
             throw new NotEnoughArgumentsException();
         }
         int id = Integer.parseInt(args[0]);
         try {
-            TaskStatus status = taskFactory.getTaskStatus(args[0]);
+            TaskStatus status = taskFactory.getTaskStatus(args[1]);
             List<Task> tasks = taskManager.getTasksByStatus(id, status);
             for (Task task: tasks) {
                 writer.write(task.toString());

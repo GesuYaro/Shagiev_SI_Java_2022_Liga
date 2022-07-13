@@ -37,8 +37,17 @@ public class CommandHandlerImpl implements CommandHandler {
                     args = new String[commandAndArgs.length - 1];
                     System.arraycopy(commandAndArgs, 1, args, 0, commandAndArgs.length - 1);
                 }
+                CommandName key = null;
                 try {
-                    if (commandMap.containsKey(CommandName.valueOf(commandPart.toUpperCase()))) {
+                    key = CommandName.valueOf(commandPart.toUpperCase());
+                } catch (IllegalArgumentException e) {
+                    writer.write("Command ");
+                    writer.write(commandPart);
+                    writer.write(" not found\n");
+                    writer.flush();
+                }
+                if (key != null) {
+                    if (commandMap.containsKey(key)) {
                         try {
                             commandMap.get(CommandName.valueOf(commandPart.toUpperCase())).execute(args);
                         } catch (NotEnoughArgumentsException | NumberFormatException e) {
@@ -53,17 +62,12 @@ public class CommandHandlerImpl implements CommandHandler {
                         writer.write(" not implemented\n");
                         writer.flush();
                     }
-                } catch (IllegalArgumentException e) {
-                    writer.write("Command ");
-                    writer.write(commandPart);
-                    writer.write(" not found\n");
-                    writer.flush();
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error(e.getMessage());
         }
-        String result =  byteArrayOutputStream.toString();
+        String result = byteArrayOutputStream.toString();
         byteArrayOutputStream.reset();
         return result;
     }

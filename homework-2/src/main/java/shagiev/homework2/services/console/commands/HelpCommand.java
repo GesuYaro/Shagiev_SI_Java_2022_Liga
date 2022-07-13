@@ -34,7 +34,7 @@ public class HelpCommand implements Command {
                 } else {
                     writer.write("no description");
                 }
-                writer.write("\r\n");
+                writer.write("\n");
             }
             writer.flush();
         } catch (IOException e) {

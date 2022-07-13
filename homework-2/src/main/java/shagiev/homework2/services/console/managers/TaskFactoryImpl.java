@@ -15,7 +15,8 @@ public class TaskFactoryImpl implements TaskFactory {
 
     public Task getTask(String id, String header, String description,
                        String date, String status, String userId) {
-        return new Task(0, header, description, getDate(date), getTaskStatus(status), getUserId(userId));
+        return new Task(0, header,
+                description, getDate(date), getTaskStatus(status), getUserId(userId) != null ? getUserId(userId) : 0);
     }
 
     public Date getDate(String string) {
@@ -43,7 +44,7 @@ public class TaskFactoryImpl implements TaskFactory {
         return status;
     }
 
-    public int getUserId(String string) {
+    public Integer getUserId(String string) {
         Integer id = null;
         try {
             id = Integer.parseInt(string);
