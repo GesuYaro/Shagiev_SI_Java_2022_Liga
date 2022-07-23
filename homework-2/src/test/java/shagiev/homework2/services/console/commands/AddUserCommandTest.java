@@ -2,6 +2,7 @@ package shagiev.homework2.services.console.commands;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import shagiev.homework2.dto.user.UserRequestDTO;
 import shagiev.homework2.model.task.Task;
 import shagiev.homework2.model.task.TaskStatus;
 import shagiev.homework2.model.user.User;
@@ -42,8 +43,8 @@ class AddUserCommandTest {
         return "Test".split(" ");
     }
 
-    User getValidUser() {
-        return new User(1, "Test");
+    UserRequestDTO getValidUser() {
+        return new UserRequestDTO(1, "Test");
     }
 
     String[] getNotEnoughArgs() {

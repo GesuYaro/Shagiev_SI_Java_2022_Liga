@@ -3,12 +3,16 @@ package shagiev.homework2.services.task;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import shagiev.homework2.dto.task.TaskRequestDTO;
 import shagiev.homework2.model.task.Task;
 import shagiev.homework2.model.task.TaskStatus;
+import shagiev.homework2.model.user.User;
 import shagiev.homework2.repos.TaskRepo;
+import shagiev.homework2.repos.UserRepo;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -16,6 +20,7 @@ import java.util.List;
 public class TaskServiceImpl implements TaskService {
 
     private final TaskRepo taskRepo;
+    private final UserRepo userRepo;
 
     @Override
     public List<Task> getTasksByUserId(int userId) {
@@ -34,8 +39,13 @@ public class TaskServiceImpl implements TaskService {
 
     @Transactional
     @Override
-    public void save(Task task) {
-        taskRepo.save(task);
+    public void save(TaskRequestDTO taskRequestDTO) {
+        Optional<User> userOptional = userRepo.findById(taskRequestDTO.getUserId());
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            taskRepo.save(new Task(taskRequestDTO.getId(), taskRequestDTO.getHeader(),
+                    taskRequestDTO.getDescription(), taskRequestDTO.getDate(), taskRequestDTO.getStatus(), user));
+        }
     }
 
     @Transactional
@@ -65,7 +75,10 @@ public class TaskServiceImpl implements TaskService {
     @Transactional
     @Override
     public void updateTask(int id, String header, String description, Date date, TaskStatus taskStatus, int userId) {
-        taskRepo.updateTaskById(id, header, description, date, taskStatus, userId);
+        Optional<User> user = userRepo.findById(id);
+        if (user.isPresent()) {
+            taskRepo.updateTaskById(id, header, description, date, taskStatus, user.get());
+        }
     }
 
 }

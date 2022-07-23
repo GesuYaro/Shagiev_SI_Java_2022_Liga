@@ -5,8 +5,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import shagiev.homework2.dto.task.TaskRequestDTO;
 import shagiev.homework2.model.task.Task;
 import shagiev.homework2.model.task.TaskStatus;
+import shagiev.homework2.model.user.User;
 import shagiev.homework2.services.task.TaskService;
 
 import java.util.ArrayList;
@@ -44,8 +46,8 @@ class TaskService2TaskManagerAdapterTest {
 
     @Test
     void addTaskTest() {
-        taskManagerAdapter.addTask(getValidTask());
-        Mockito.verify(taskServiceMock).save(getValidTask());
+        taskManagerAdapter.addTask(getValidTaskDTO());
+        Mockito.verify(taskServiceMock).save(getValidTaskDTO());
     }
 
     @Test
@@ -68,7 +70,7 @@ class TaskService2TaskManagerAdapterTest {
 
     @Test
     void updateTaskTest() {
-        Task task = getValidTask();
+        TaskRequestDTO task = getValidTaskDTO();
         taskManagerAdapter.updateTask(2, task);
         Mockito.verify(taskServiceMock).updateTask(2, task.getHeader(),
                 task.getDescription(), task.getDate(), task.getStatus(), task.getUserId());
@@ -82,36 +84,40 @@ class TaskService2TaskManagerAdapterTest {
 
     List<Task> getTasksList() {
         List<Task> taskList = new ArrayList<>();
-        taskList.add(new Task(1, "Test1", "test test", new Date(1000000000L), TaskStatus.NEW, 1));
-        taskList.add(new Task(2, "Test2", "test test", new Date(2000000000L), TaskStatus.DONE, 1));
-        taskList.add(new Task(3, "Test3", "test test", new Date(3000000000L), TaskStatus.IN_PROGRESS, 1));
-        taskList.add(new Task(10, "Test4", "test test", new Date(4000000000L), TaskStatus.NEW, 1));
-        taskList.add(new Task(999, "Test5", "test test", new Date(5000000000L), TaskStatus.IN_PROGRESS, 1));
-        taskList.add(new Task(90, "Test5", "test test", new Date(5000000000L), TaskStatus.IN_PROGRESS, 2));
-        taskList.add(new Task(99, "Test5", "test test", new Date(5000000000L), TaskStatus.IN_PROGRESS, 3));
+        User user = new User(1, "Petya",null);
+        User anotherUser = new User(2, "Vasya", null);
+        taskList.add(new Task(1, "Test1", "test test", new Date(1000000000L), TaskStatus.NEW, user));
+        taskList.add(new Task(2, "Test2", "test test", new Date(2000000000L), TaskStatus.DONE, user));
+        taskList.add(new Task(3, "Test3", "test test", new Date(3000000000L), TaskStatus.IN_PROGRESS, user));
+        taskList.add(new Task(10, "Test4", "test test", new Date(4000000000L), TaskStatus.NEW, user));
+        taskList.add(new Task(999, "Test5", "test test", new Date(5000000000L), TaskStatus.IN_PROGRESS, user));
+        taskList.add(new Task(90, "Test5", "test test", new Date(5000000000L), TaskStatus.IN_PROGRESS, anotherUser));
+        taskList.add(new Task(99, "Test5", "test test", new Date(5000000000L), TaskStatus.IN_PROGRESS, anotherUser));
 
         return taskList;
     }
 
     List<Task> getTasksByUserId1List() {
         List<Task> taskList = new ArrayList<>();
-        taskList.add(new Task(1, "Test1", "test test", new Date(1000000000L), TaskStatus.NEW, 1));
-        taskList.add(new Task(2, "Test2", "test test", new Date(2000000000L), TaskStatus.DONE, 1));
-        taskList.add(new Task(3, "Test3", "test test", new Date(3000000000L), TaskStatus.IN_PROGRESS, 1));
-        taskList.add(new Task(10, "Test4", "test test", new Date(4000000000L), TaskStatus.NEW, 1));
-        taskList.add(new Task(999, "Test5", "test test", new Date(5000000000L), TaskStatus.IN_PROGRESS, 1));
+        User user = new User(1, "Petya",null);
+        taskList.add(new Task(1, "Test1", "test test", new Date(1000000000L), TaskStatus.NEW, user));
+        taskList.add(new Task(2, "Test2", "test test", new Date(2000000000L), TaskStatus.DONE, user));
+        taskList.add(new Task(3, "Test3", "test test", new Date(3000000000L), TaskStatus.IN_PROGRESS, user));
+        taskList.add(new Task(10, "Test4", "test test", new Date(4000000000L), TaskStatus.NEW, user));
+        taskList.add(new Task(999, "Test5", "test test", new Date(5000000000L), TaskStatus.IN_PROGRESS, user));
         return taskList;
     }
 
     List<Task> getTasksByStatusNEWList() {
         List<Task> taskList = new ArrayList<>();
-        taskList.add(new Task(1, "Test1", "test test", new Date(1000000000L), TaskStatus.NEW, 1));
-        taskList.add(new Task(10, "Test4", "test test", new Date(4000000000L), TaskStatus.NEW, 1));
+        User user = new User(1, "Petya",null);
+        taskList.add(new Task(1, "Test1", "test test", new Date(1000000000L), TaskStatus.NEW, user));
+        taskList.add(new Task(10, "Test4", "test test", new Date(4000000000L), TaskStatus.NEW, user));
         return taskList;
     }
 
-    Task getValidTask() {
-        return new Task(1000, "Test1000", "test test", new Date(1000000000L), TaskStatus.NEW, 90);
+    TaskRequestDTO getValidTaskDTO() {
+        return new TaskRequestDTO(1000, "Test1000", "test test", new Date(1000000000L), TaskStatus.NEW, 90);
     }
 
 }

@@ -1,5 +1,6 @@
 package shagiev.homework2.services.task;
 
+import shagiev.homework2.dto.task.TaskRequestDTO;
 import shagiev.homework2.model.task.Task;
 import shagiev.homework2.model.task.TaskStatus;
 
@@ -11,7 +12,7 @@ public interface TaskService {
     List<Task> getTasksByUserId(int userId);
     List<Task> getAllTasks();
     List<Task> getTasksByUserIdAndStatus(int userId, TaskStatus status);
-    void save(Task task);
+    void save(TaskRequestDTO task);
     void deleteByUserId(int userId);
     void clear();
     void deleteById(int id);

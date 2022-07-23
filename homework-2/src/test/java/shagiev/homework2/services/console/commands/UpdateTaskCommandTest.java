@@ -2,6 +2,7 @@ package shagiev.homework2.services.console.commands;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import shagiev.homework2.dto.task.TaskRequestDTO;
 import shagiev.homework2.model.task.Task;
 import shagiev.homework2.model.task.TaskStatus;
 import shagiev.homework2.services.console.managers.TaskFactory;
@@ -45,8 +46,8 @@ class UpdateTaskCommandTest {
         return getValidTask().getId();
     }
 
-    Task getValidTask() {
-        return new Task(1, "Test", "Testtestest", new GregorianCalendar(1980, Calendar.SEPTEMBER, 19).getTime(), TaskStatus.DONE, 2);
+    TaskRequestDTO getValidTask() {
+        return new TaskRequestDTO(1, "Test", "Testtestest", new GregorianCalendar(1980, Calendar.SEPTEMBER, 19).getTime(), TaskStatus.DONE, 2);
     }
 
     String[] getNotEnoughArgs() {

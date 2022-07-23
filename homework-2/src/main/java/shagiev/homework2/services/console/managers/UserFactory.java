@@ -1,9 +1,9 @@
 package shagiev.homework2.services.console.managers;
 
-import shagiev.homework2.model.user.User;
+import shagiev.homework2.dto.user.UserRequestDTO;
 
 public interface UserFactory {
 
-    User getUser(String name);
+    UserRequestDTO getUser(String name);
 
 }

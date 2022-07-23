@@ -2,6 +2,7 @@ package shagiev.homework2.services.console.managers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import shagiev.homework2.dto.task.TaskRequestDTO;
 import shagiev.homework2.model.task.Task;
 import shagiev.homework2.model.task.TaskStatus;
 import shagiev.homework2.services.task.TaskService;
@@ -30,13 +31,13 @@ public class TaskService2TaskManagerAdapter implements TaskManager {
     }
 
     @Override
-    public void addTask(Task task) {
+    public void addTask(TaskRequestDTO task) {
         taskService.save(task);
     }
 
     @Override
     public void clear(int userId) {
-        taskService.deleteByUserId(userId);;
+        taskService.deleteByUserId(userId);
     }
 
     @Override
@@ -50,7 +51,7 @@ public class TaskService2TaskManagerAdapter implements TaskManager {
     }
 
     @Override
-    public void updateTask(int id, Task task) {
+    public void updateTask(int id, TaskRequestDTO task) {
         taskService.updateTask(id, task.getHeader(), task.getDescription(), task.getDate(), task.getStatus(), task.getUserId());
     }
 

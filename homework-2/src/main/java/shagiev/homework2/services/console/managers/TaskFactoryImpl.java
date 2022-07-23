@@ -2,7 +2,7 @@ package shagiev.homework2.services.console.managers;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import shagiev.homework2.model.task.Task;
+import shagiev.homework2.dto.task.TaskRequestDTO;
 import shagiev.homework2.model.task.TaskStatus;
 
 import java.text.ParseException;
@@ -13,9 +13,9 @@ import java.util.Date;
 @Service
 public class TaskFactoryImpl implements TaskFactory {
 
-    public Task getTask(String id, String header, String description,
-                       String date, String status, String userId) {
-        return new Task(0, header,
+    public TaskRequestDTO getTask(String id, String header, String description,
+                                  String date, String status, String userId) {
+        return new TaskRequestDTO(0, header,
                 description, getDate(date), getTaskStatus(status), getUserId(userId) != null ? getUserId(userId) : 0);
     }
 

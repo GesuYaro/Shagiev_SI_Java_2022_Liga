@@ -2,6 +2,7 @@ package shagiev.homework2.services.console.managers;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import shagiev.homework2.dto.user.UserRequestDTO;
 import shagiev.homework2.model.user.User;
 import shagiev.homework2.services.user.UserService;
 
@@ -17,7 +18,7 @@ class UserService2UserManagerAdapterTest {
 
     @Test
     void addUser_validUser() {
-        User user = getValidUser();
+        UserRequestDTO user = getValidUser();
         userManagerAdapter.addUser(user);
         Mockito.verify(userServiceMock).save(user);
     }
@@ -43,7 +44,7 @@ class UserService2UserManagerAdapterTest {
 
     @Test
     void updateUser() {
-        User user = getValidUser();
+        UserRequestDTO user = getValidUser();
         userManagerAdapter.updateUser(user.getId(), user);
         Mockito.verify(userServiceMock).updateName(user.getId(), user.getName());
     }
@@ -56,11 +57,11 @@ class UserService2UserManagerAdapterTest {
 
     List<User> getUserList() {
         List<User> users = new ArrayList<>();
-        users.add(new User(1, "Test1"));
-        users.add(new User(2, "Test2"));
-        users.add(new User(3, "Test3"));
-        users.add(new User(4, "Test4"));
-        users.add(new User(5, "Test5"));
+        users.add(new User(1, "Test1", null));
+        users.add(new User(2, "Test2", null));
+        users.add(new User(3, "Test3", null));
+        users.add(new User(4, "Test4", null));
+        users.add(new User(5, "Test5", null));
         return users;
     }
 
@@ -68,7 +69,7 @@ class UserService2UserManagerAdapterTest {
         return new ArrayList<>();
     }
 
-    User getValidUser() {
-       return new User(1, "Test1");
+    UserRequestDTO getValidUser() {
+       return new UserRequestDTO(1, "Test1");
     }
 }
