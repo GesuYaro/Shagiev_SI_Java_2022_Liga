@@ -28,6 +28,7 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.0'
     implementation 'org.postgresql:postgresql:42.4.0'
+    annotationProcessor 'org.hibernate:hibernate-jpamodelgen'
 }
 
 tasks.named('test') {
