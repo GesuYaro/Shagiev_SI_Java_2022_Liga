@@ -14,7 +14,7 @@ public class Controller {
 
     @GetMapping("/cli")
     public String executeCommand(@RequestParam String command) {
-        return commandHandler.handleCommand(command);
+        return commandHandler.handleCommand(command).replace("\n", "<br>");
     }
 
 }

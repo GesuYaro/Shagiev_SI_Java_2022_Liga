@@ -8,7 +8,6 @@ import shagiev.homework2.model.user.User;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name = "tasks")
@@ -20,7 +19,8 @@ import java.util.Objects;
 public class Task {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_generator")
+    @SequenceGenerator(name="task_generator", sequenceName = "task_seq", allocationSize=1)
     private int id;
     private String header;
     private String description;
