@@ -8,7 +8,7 @@ import shagiev.homework2.services.console.CommandHandler;
 
 @RestController
 @RequiredArgsConstructor
-public class Controller {
+public class CLIController {
 
     private final CommandHandler commandHandler;
 
