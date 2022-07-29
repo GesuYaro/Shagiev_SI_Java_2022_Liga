@@ -1,5 +1,6 @@
 package shagiev.homework2.repos;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
@@ -15,7 +16,12 @@ import java.util.List;
 @Repository
 public interface TaskRepo extends JpaRepository<Task, Integer>, JpaSpecificationExecutor<Task> {
 
+    @Override
+    @EntityGraph(attributePaths = "user")
+    List<Task> findAll();
+    @EntityGraph(attributePaths = "user")
     List<Task> findAllByUserId(int userId);
+    @EntityGraph(attributePaths = "user")
     List<Task> findAllByUserIdAndStatus(int userId, TaskStatus status);
     void deleteAllByUserId(int userId);
     @Modifying
