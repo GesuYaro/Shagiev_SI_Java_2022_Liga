@@ -49,4 +49,10 @@ public class TaskCRUDServiceImpl implements TaskCRUDService {
         taskService.deleteById(id);
     }
 
+    @Override
+    public List<TaskInfoDTO> getByUserId(int id) {
+        List<Task> tasks = taskService.getTasksByUserId(id);
+        return taskDTOConverter.toTaskInfoDTOList(tasks);
+    }
+
 }

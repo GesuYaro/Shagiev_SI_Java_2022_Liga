@@ -2,9 +2,11 @@ package shagiev.homework2.services.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import shagiev.homework2.dto.task.TaskInfoDTO;
 import shagiev.homework2.dto.user.UserInfoDTO;
 import shagiev.homework2.dto.user.UserRequestDTO;
 import shagiev.homework2.model.user.User;
+import shagiev.homework2.services.task.TaskCRUDService;
 
 import java.util.List;
 
@@ -13,6 +15,7 @@ import java.util.List;
 public class UserCRUDServiceImpl implements UserCRUDService {
 
     private final UserService userService;
+    private final TaskCRUDService taskCRUDService;
     private final UserDTOConverter userDTOConverter;
 
     @Override
@@ -45,6 +48,11 @@ public class UserCRUDServiceImpl implements UserCRUDService {
     @Override
     public void delete(int id) {
         userService.deleteUser(id);
+    }
+
+    @Override
+    public List<TaskInfoDTO> getUserTasks(int id) {
+        return taskCRUDService.getByUserId(id);
     }
 
 }

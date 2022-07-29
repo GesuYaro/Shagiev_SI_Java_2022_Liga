@@ -2,6 +2,7 @@ package shagiev.homework2.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import shagiev.homework2.dto.task.TaskInfoDTO;
 import shagiev.homework2.dto.user.UserInfoDTO;
 import shagiev.homework2.dto.user.UserRequestDTO;
 import shagiev.homework2.services.user.UserCRUDService;
@@ -14,6 +15,7 @@ import java.util.List;
 public class UserController {
 
     private final UserCRUDService userCRUDService;
+    private final TaskController taskController;
 
     @GetMapping
     public List<UserInfoDTO> getUsers() {
@@ -38,6 +40,11 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable int id) {
         userCRUDService.delete(id);
+    }
+
+    @GetMapping("/{id}/tasks")
+    public List<TaskInfoDTO> getUserTasks(@PathVariable int id) {
+        return userCRUDService.getUserTasks(id);
     }
 
 }

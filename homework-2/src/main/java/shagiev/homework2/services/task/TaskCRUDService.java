@@ -12,5 +12,6 @@ public interface TaskCRUDService {
     TaskInfoDTO save(TaskRequestDTO taskRequestDTO);
     int update(int id, TaskRequestDTO taskRequestDTO);
     void delete(int id);
+    List<TaskInfoDTO> getByUserId(int id);
 
 }
