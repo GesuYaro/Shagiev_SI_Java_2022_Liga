@@ -39,12 +39,14 @@ public class TaskServiceImpl implements TaskService {
 
     @Transactional
     @Override
-    public void save(TaskRequestDTO taskRequestDTO) {
+    public Task save(TaskRequestDTO taskRequestDTO) {
         Optional<User> userOptional = userRepo.findById(taskRequestDTO.getUserId());
         if (userOptional.isPresent()) {
             User user = userOptional.get();
-            taskRepo.save(new Task(taskRequestDTO.getId(), taskRequestDTO.getHeader(),
+            return taskRepo.save(new Task(0, taskRequestDTO.getHeader(),
                     taskRequestDTO.getDescription(), taskRequestDTO.getDate(), taskRequestDTO.getStatus(), user));
+        } else {
+            return null;
         }
     }
 
@@ -74,11 +76,19 @@ public class TaskServiceImpl implements TaskService {
 
     @Transactional
     @Override
-    public void updateTask(int id, String header, String description, Date date, TaskStatus taskStatus, int userId) {
-        Optional<User> user = userRepo.findById(id);
+    public int updateTask(int id, String header, String description, Date date, TaskStatus taskStatus, int userId) {
+        Optional<User> user = userRepo.findById(userId);
         if (user.isPresent()) {
-            taskRepo.updateTaskById(id, header, description, date, taskStatus, user.get());
+            return taskRepo.updateTaskById(id, header, description, date, taskStatus, user.get());
+        } else {
+            return 0;
         }
+    }
+
+    @Override
+    public Task getTaskById(int id) {
+        Optional<Task> task = taskRepo.findById(id);
+        return task.orElse(null);
     }
 
 }

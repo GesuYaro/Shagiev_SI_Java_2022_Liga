@@ -19,6 +19,6 @@ public interface UserRepo extends JpaRepository<User, Integer>, JpaSpecification
 
     @Modifying
     @Query("update User u set u.name = ?2 where u.id = ?1")
-    void updateNameById(int id, String name);
+    int updateNameById(int id, String name);
 
 }

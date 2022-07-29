@@ -15,7 +15,7 @@ public class TaskFactoryImpl implements TaskFactory {
 
     public TaskRequestDTO getTask(String id, String header, String description,
                                   String date, String status, String userId) {
-        return new TaskRequestDTO(0, header,
+        return new TaskRequestDTO(header,
                 description, getDate(date), getTaskStatus(status), getUserId(userId) != null ? getUserId(userId) : 0);
     }
 

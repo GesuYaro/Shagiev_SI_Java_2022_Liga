@@ -8,8 +8,9 @@ import java.util.List;
 public interface UserService {
 
     List<User> getAll();
-    void save(UserRequestDTO user);
-    void updateName(int id, String name);
+    User getConcrete(int id);
+    User save(UserRequestDTO user);
+    int updateName(int id, String name);
     void deleteUser(int id);
     void clear();
 

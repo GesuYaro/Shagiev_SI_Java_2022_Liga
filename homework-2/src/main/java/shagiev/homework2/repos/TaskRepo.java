@@ -24,6 +24,6 @@ public interface TaskRepo extends JpaRepository<Task, Integer>, JpaSpecification
 
     @Modifying
     @Query("update Task t set t.header = ?2, t.description = ?3, t.date = ?4, t.status = ?5, t.user = ?6 where t.id = ?1")
-    void updateTaskById(int id, String header, String description, Date date, TaskStatus taskStatus, User user);
+    int updateTaskById(int id, String header, String description, Date date, TaskStatus taskStatus, User user);
 
 }

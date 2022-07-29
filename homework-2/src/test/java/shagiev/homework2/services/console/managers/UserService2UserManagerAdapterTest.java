@@ -45,8 +45,8 @@ class UserService2UserManagerAdapterTest {
     @Test
     void updateUser() {
         UserRequestDTO user = getValidUser();
-        userManagerAdapter.updateUser(user.getId(), user);
-        Mockito.verify(userServiceMock).updateName(user.getId(), user.getName());
+        userManagerAdapter.updateUser(1, user);
+        Mockito.verify(userServiceMock).updateName(1, user.getName());
     }
 
     @Test
@@ -70,6 +70,6 @@ class UserService2UserManagerAdapterTest {
     }
 
     UserRequestDTO getValidUser() {
-       return new UserRequestDTO(1, "Test1");
+       return new UserRequestDTO("Test1");
     }
 }

@@ -9,7 +9,7 @@ public class UserFactoryImpl implements UserFactory {
 
     @Override
     public UserRequestDTO getUser(String name) {
-        return new UserRequestDTO(0, name);
+        return new UserRequestDTO(name);
     }
 
 }

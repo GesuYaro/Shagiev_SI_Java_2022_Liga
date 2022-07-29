@@ -8,5 +8,6 @@ import java.util.List;
 public interface UserDTOConverter {
 
     List<UserInfoDTO> toUserInfoDTOList(List<User> users);
+    UserInfoDTO toUserInfoDTO(User user);
 
 }

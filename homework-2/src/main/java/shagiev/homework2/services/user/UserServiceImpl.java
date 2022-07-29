@@ -21,16 +21,22 @@ public class UserServiceImpl implements UserService {
         return userRepo.findAll();
     }
 
-    @Transactional
     @Override
-    public void save(UserRequestDTO user) {
-        userRepo.save(new User(user.getId(), user.getName(), null));
+    public User getConcrete(int id) {
+        var user = userRepo.findById(id);
+        return user.orElse(null);
     }
 
     @Transactional
     @Override
-    public void updateName(int id, String name) {
-        userRepo.updateNameById(id, name);
+    public User save(UserRequestDTO user) {
+        return userRepo.save(new User(0, user.getName(), null));
+    }
+
+    @Transactional
+    @Override
+    public int updateName(int id, String name) {
+        return userRepo.updateNameById(id, name);
     }
 
     @Transactional

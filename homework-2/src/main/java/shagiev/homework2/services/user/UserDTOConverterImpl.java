@@ -14,12 +14,26 @@ public class UserDTOConverterImpl implements UserDTOConverter {
     @Override
     public List<UserInfoDTO> toUserInfoDTOList(List<User> users) {
         List<UserInfoDTO> dtos = new ArrayList<>();
-        for (User user: users) {
-            List<Integer> taskIds = user.getTasks().stream()
-                    .map(Task::getId)
-                    .toList();
-            dtos.add(new UserInfoDTO(user.getId(), user.getName(), taskIds));
+        for (User user : users) {
+            dtos.add(toUserInfoDTO(user));
         }
         return dtos;
     }
+
+    @Override
+    public UserInfoDTO toUserInfoDTO(User user) {
+        List<Integer> taskIds = getTaskIds(user);
+        return new UserInfoDTO(user.getId(), user.getName(), taskIds);
+    }
+
+    private List<Integer> getTaskIds(User user) {
+        if (user.getTasks() != null) {
+            return user.getTasks().stream()
+                    .map(Task::getId)
+                    .toList();
+        } else {
+            return null;
+        }
+    }
+
 }
