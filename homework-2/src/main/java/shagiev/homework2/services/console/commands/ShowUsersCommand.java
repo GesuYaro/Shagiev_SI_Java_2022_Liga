@@ -2,31 +2,36 @@ package shagiev.homework2.services.console.commands;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import shagiev.homework2.dto.command.CommandResponseDTO;
+import shagiev.homework2.dto.user.UserInfoDTO;
+import shagiev.homework2.model.task.Task;
 import shagiev.homework2.model.user.User;
 import shagiev.homework2.services.console.managers.UserManager;
 
-import java.io.IOException;
 import java.io.Writer;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Component
 public class ShowUsersCommand implements Command {
 
     private final UserManager userManager;
-    private final Writer writer;
 
     @Override
-    public boolean execute(String[] args) {
-        try {
-            for (User user : userManager.getUsers()) {
-                writer.write(user.toString());
-                writer.write("\n");
-            }
-            writer.flush();
-        } catch (IOException e) {
-            System.err.println("Problem with printing");
+    public CommandResponseDTO execute(String[] args) {
+        CommandResponseDTO response = new CommandResponseDTO();
+        for (User user : userManager.getUsers()) {
+            List<Integer> taskIds = user.getTasks().stream()
+                    .map(Task::getId)
+                    .toList();
+            response.addUser(new UserInfoDTO(
+                    user.getId(),
+                    user.getName(),
+                    taskIds
+            ));
         }
-        return false;
+        return response;
     }
 
     @Override
