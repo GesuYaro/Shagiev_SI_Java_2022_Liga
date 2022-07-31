@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import shagiev.homework2.model.task.Task;
 import shagiev.homework2.model.task.TaskStatus;
 import shagiev.homework2.model.user.User;
@@ -17,10 +18,15 @@ public interface TaskRepo extends JpaRepository<Task, Integer> {
 
     @Override
     @EntityGraph(attributePaths = "user")
+    @Transactional(readOnly = true)
     List<Task> findAll();
     @EntityGraph(attributePaths = "user")
+    @Transactional(readOnly = true)
+
     List<Task> findAllByUserId(int userId);
     @EntityGraph(attributePaths = "user")
+    @Transactional(readOnly = true)
+
     List<Task> findAllByUserIdAndStatus(int userId, TaskStatus status);
     void deleteAllByUserId(int userId);
     @Modifying
