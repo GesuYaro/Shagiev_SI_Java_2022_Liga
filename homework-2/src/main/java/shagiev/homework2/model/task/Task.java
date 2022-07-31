@@ -8,6 +8,7 @@ import shagiev.homework2.model.user.User;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "tasks")
@@ -21,10 +22,19 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_generator")
     @SequenceGenerator(name="task_generator", sequenceName = "task_seq", allocationSize=1)
+    @Column(name = "id")
     private int id;
+
+    @Column(name = "header")
     private String header;
+
+    @Column(name = "description")
     private String description;
+
+    @Column(name = "date")
     private Date date;
+
+    @Column(name = "status")
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
 

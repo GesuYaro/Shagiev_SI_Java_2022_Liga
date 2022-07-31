@@ -19,8 +19,10 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
     @SequenceGenerator(name="user_generator", sequenceName = "user_seq", allocationSize=1)
+    @Column(name = "id")
     private int id;
 
+    @Column(name = "name")
     private String name;
 
     @OneToMany(mappedBy = "user")

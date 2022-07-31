@@ -1,10 +1,8 @@
 package shagiev.homework2.services.console.commands;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import shagiev.homework2.dto.command.CommandResponseDTO;
 
-import java.io.IOException;
-import java.io.Writer;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,11 +10,9 @@ import java.util.Map;
 @Component
 public class HelpCommand implements Command {
 
-    private final Writer writer;
     private final Map<CommandName, Command> commandMap;
 
-    public HelpCommand(Writer writer, List<Command> commandList) {
-        this.writer = writer;
+    public HelpCommand(List<Command> commandList) {
         this.commandMap = new HashMap<>();
         for (Command command : commandList) {
             commandMap.put(command.getName(), command);
@@ -24,23 +20,19 @@ public class HelpCommand implements Command {
     }
 
     @Override
-    public boolean execute(String[] args) {
-        try {
-            for (CommandName commandName : commandMap.keySet()) {
-                writer.write(commandName.name());
-                writer.write(" | ");
-                if (commandMap.get(commandName).getDescription() != null) {
-                    writer.write(commandMap.get(commandName).getDescription());
-                } else {
-                    writer.write("no description");
-                }
-                writer.write("\n");
+    public CommandResponseDTO execute(String[] args) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (CommandName commandName : commandMap.keySet()) {
+            stringBuilder.append(commandName.name());
+            stringBuilder.append(" | ");
+            if (commandMap.get(commandName).getDescription() != null) {
+                stringBuilder.append(commandMap.get(commandName).getDescription());
+            } else {
+                stringBuilder.append("no description");
             }
-            writer.flush();
-        } catch (IOException e) {
-            System.err.println("Problem with printing");
+            stringBuilder.append("\n");
         }
-        return false;
+        return new CommandResponseDTO(stringBuilder.toString());
     }
 
     @Override
