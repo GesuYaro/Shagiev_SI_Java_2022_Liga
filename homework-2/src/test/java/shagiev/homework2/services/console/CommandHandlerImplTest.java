@@ -3,6 +3,7 @@ package shagiev.homework2.services.console;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import shagiev.homework2.dto.command.CommandResponseDTO;
 import shagiev.homework2.services.console.commands.AddTaskCommand;
 import shagiev.homework2.services.console.commands.Command;
 import shagiev.homework2.services.console.commands.CommandName;
@@ -24,13 +25,13 @@ class CommandHandlerImplTest {
 
     {
         Mockito.when(addTaskCommandMock.getName()).thenReturn(CommandName.ADD_TASK);
-        Mockito.when(addTaskCommandMock.execute(getValidCommandArgs())).thenReturn(false);
+        Mockito.when(addTaskCommandMock.execute(getValidCommandArgs())).thenReturn(new CommandResponseDTO());
         Mockito.when(addTaskCommandMock.execute(getNotEnoughArguments())).thenThrow(new NotEnoughArgumentsException());
         Mockito.when(clearCommandMock.getName()).thenReturn(CommandName.CLEAR);
         commandList = new ArrayList<>();
         commandList.add(addTaskCommandMock);
         commandList.add(clearCommandMock);
-        commandHandler = new CommandHandlerImpl(commandList, byteArrayOutputStream);
+        commandHandler = new CommandHandlerImpl(commandList);
     }
 
     @Test
