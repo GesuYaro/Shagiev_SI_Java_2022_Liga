@@ -1,11 +1,9 @@
 package shagiev.homework2.services.console.managers;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import shagiev.homework2.dto.task.TaskRequestDTO;
+import shagiev.homework2.dto.task.TaskRequestDto;
 import shagiev.homework2.model.task.Task;
 import shagiev.homework2.model.task.TaskStatus;
 import shagiev.homework2.model.user.User;
@@ -14,8 +12,6 @@ import shagiev.homework2.services.task.TaskService;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class TaskService2TaskManagerAdapterTest {
 
@@ -70,7 +66,7 @@ class TaskService2TaskManagerAdapterTest {
 
     @Test
     void updateTaskTest() {
-        TaskRequestDTO task = getValidTaskDTO();
+        TaskRequestDto task = getValidTaskDTO();
         taskManagerAdapter.updateTask(2, task);
         Mockito.verify(taskServiceMock).updateTask(2, task.getHeader(),
                 task.getDescription(), task.getDate(), task.getStatus(), task.getUserId());
@@ -116,8 +112,8 @@ class TaskService2TaskManagerAdapterTest {
         return taskList;
     }
 
-    TaskRequestDTO getValidTaskDTO() {
-        return new TaskRequestDTO(1000, "Test1000", "test test", new Date(1000000000L), TaskStatus.NEW, 90);
+    TaskRequestDto getValidTaskDTO() {
+        return new TaskRequestDto(1000, "Test1000", "test test", new Date(1000000000L), TaskStatus.NEW, 90);
     }
 
 }

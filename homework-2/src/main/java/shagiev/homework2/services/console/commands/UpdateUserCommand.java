@@ -2,7 +2,7 @@ package shagiev.homework2.services.console.commands;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import shagiev.homework2.dto.command.CommandResponseDTO;
+import shagiev.homework2.dto.command.CommandResponseDto;
 import shagiev.homework2.services.console.managers.UserFactory;
 import shagiev.homework2.services.console.managers.UserManager;
 
@@ -14,14 +14,14 @@ public class UpdateUserCommand implements Command {
     private final UserFactory userFactory;
 
     @Override
-    public CommandResponseDTO execute(String[] args) {
+    public CommandResponseDto execute(String[] args) {
         if (args == null || args.length < 2) {
             throw new NotEnoughArgumentsException();
         }
         int id = Integer.parseInt(args[0]);
         String username = args[1];
         userManager.updateUser(id, userFactory.getUser(username));
-        return new CommandResponseDTO("ok");
+        return new CommandResponseDto("ok");
     }
 
     @Override

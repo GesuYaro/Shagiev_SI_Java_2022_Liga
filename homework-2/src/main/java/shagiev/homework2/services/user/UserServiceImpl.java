@@ -3,7 +3,7 @@ package shagiev.homework2.services.user;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import shagiev.homework2.dto.user.UserRequestDTO;
+import shagiev.homework2.dto.user.UserRequestDto;
 import shagiev.homework2.model.user.User;
 import shagiev.homework2.repos.UserRepo;
 
@@ -29,7 +29,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional
     @Override
-    public User save(UserRequestDTO user) {
+    public User save(UserRequestDto user) {
         return userRepo.save(new User(0, user.getName(), null));
     }
 

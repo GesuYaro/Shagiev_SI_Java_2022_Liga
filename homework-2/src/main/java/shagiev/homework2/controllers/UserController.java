@@ -2,10 +2,10 @@ package shagiev.homework2.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import shagiev.homework2.dto.task.TaskInfoDTO;
-import shagiev.homework2.dto.user.UserInfoDTO;
-import shagiev.homework2.dto.user.UserRequestDTO;
-import shagiev.homework2.services.user.UserCRUDService;
+import shagiev.homework2.dto.task.TaskInfoDto;
+import shagiev.homework2.dto.user.UserInfoDto;
+import shagiev.homework2.dto.user.UserRequestDto;
+import shagiev.homework2.services.user.UserCrudService;
 
 import java.util.List;
 
@@ -14,37 +14,36 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserCRUDService userCRUDService;
-    private final TaskController taskController;
+    private final UserCrudService userCrudService;
 
     @GetMapping
-    public List<UserInfoDTO> getUsers() {
-        return userCRUDService.getAll();
+    public List<UserInfoDto> getUsers() {
+        return userCrudService.getAll();
     }
 
     @GetMapping("/{id}")
-    public UserInfoDTO getUser(@PathVariable int id) {
-        return userCRUDService.getConcrete(id);
+    public UserInfoDto getUser(@PathVariable int id) {
+        return userCrudService.getConcrete(id);
     }
 
     @PostMapping
-    public UserInfoDTO saveUser(@RequestBody UserRequestDTO userRequestDTO) {
-        return userCRUDService.save(userRequestDTO);
+    public UserInfoDto saveUser(@RequestBody UserRequestDto userRequestDto) {
+        return userCrudService.save(userRequestDto);
     }
 
     @PutMapping("/{id}")
-    public int updateUser(@PathVariable int id, @RequestBody UserRequestDTO userRequestDTO) {
-        return userCRUDService.update(id, userRequestDTO);
+    public int updateUser(@PathVariable int id, @RequestBody UserRequestDto userRequestDto) {
+        return userCrudService.update(id, userRequestDto);
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable int id) {
-        userCRUDService.delete(id);
+        userCrudService.delete(id);
     }
 
     @GetMapping("/{id}/tasks")
-    public List<TaskInfoDTO> getUserTasks(@PathVariable int id) {
-        return userCRUDService.getUserTasks(id);
+    public List<TaskInfoDto> getUserTasks(@PathVariable int id) {
+        return userCrudService.getUserTasks(id);
     }
 
 }

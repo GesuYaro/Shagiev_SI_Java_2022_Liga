@@ -2,7 +2,7 @@ package shagiev.homework2.services.console.commands;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import shagiev.homework2.dto.command.CommandResponseDTO;
+import shagiev.homework2.dto.command.CommandResponseDto;
 import shagiev.homework2.services.console.managers.TaskFactory;
 import shagiev.homework2.services.console.managers.TaskManager;
 
@@ -15,7 +15,7 @@ public class UpdateTaskCommand implements Command {
     private final TaskFactory taskFactory;
 
     @Override
-    public CommandResponseDTO execute(String[] args) {
+    public CommandResponseDto execute(String[] args) {
         if (args == null || args.length < 6) {
             throw new NotEnoughArgumentsException();
         }
@@ -27,7 +27,7 @@ public class UpdateTaskCommand implements Command {
         String status = args[4];
         String userId = args[5];
         taskManager.updateTask(id, taskFactory.getTask(idStr, header, description, date, status, userId));
-        return new CommandResponseDTO("ok");
+        return new CommandResponseDto("ok");
     }
 
     @Override

@@ -2,15 +2,9 @@ package shagiev.homework2.services.console.commands;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import shagiev.homework2.dto.user.UserRequestDTO;
-import shagiev.homework2.model.task.Task;
-import shagiev.homework2.model.task.TaskStatus;
-import shagiev.homework2.model.user.User;
+import shagiev.homework2.dto.user.UserRequestDto;
 import shagiev.homework2.services.console.managers.UserFactory;
 import shagiev.homework2.services.console.managers.UserManager;
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -43,8 +37,8 @@ class AddUserCommandTest {
         return "Test".split(" ");
     }
 
-    UserRequestDTO getValidUser() {
-        return new UserRequestDTO(1, "Test");
+    UserRequestDto getValidUser() {
+        return new UserRequestDto(1, "Test");
     }
 
     String[] getNotEnoughArgs() {

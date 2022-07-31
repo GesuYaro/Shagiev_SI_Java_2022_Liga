@@ -3,7 +3,7 @@ package shagiev.homework2.services.task;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import shagiev.homework2.dto.task.TaskRequestDTO;
+import shagiev.homework2.dto.task.TaskRequestDto;
 import shagiev.homework2.model.task.Task;
 import shagiev.homework2.model.task.TaskStatus;
 import shagiev.homework2.model.user.User;
@@ -39,7 +39,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Transactional
     @Override
-    public Task save(TaskRequestDTO taskRequestDTO) {
+    public Task save(TaskRequestDto taskRequestDTO) {
         Optional<User> userOptional = userRepo.findById(taskRequestDTO.getUserId());
         if (userOptional.isPresent()) {
             User user = userOptional.get();

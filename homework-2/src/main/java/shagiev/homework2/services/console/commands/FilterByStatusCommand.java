@@ -2,8 +2,8 @@ package shagiev.homework2.services.console.commands;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import shagiev.homework2.dto.command.CommandResponseDTO;
-import shagiev.homework2.dto.task.TaskInfoDTO;
+import shagiev.homework2.dto.command.CommandResponseDto;
+import shagiev.homework2.dto.task.TaskInfoDto;
 import shagiev.homework2.model.task.Task;
 import shagiev.homework2.model.task.TaskStatus;
 import shagiev.homework2.services.console.managers.TaskFactory;
@@ -19,8 +19,8 @@ public class FilterByStatusCommand implements Command {
     private final TaskManager taskManager;
 
     @Override
-    public CommandResponseDTO execute(String[] args) {
-        CommandResponseDTO response = new CommandResponseDTO();
+    public CommandResponseDto execute(String[] args) {
+        CommandResponseDto response = new CommandResponseDto();
         if (args == null || args.length < 2) {
             throw new NotEnoughArgumentsException();
         }
@@ -28,7 +28,7 @@ public class FilterByStatusCommand implements Command {
         TaskStatus status = taskFactory.getTaskStatus(args[1]);
         List<Task> tasks = taskManager.getTasksByStatus(id, status);
         for (Task task : tasks) {
-            response.addTask(new TaskInfoDTO(
+            response.addTask(new TaskInfoDto(
                     task.getId(),
                     task.getHeader(),
                     task.getDescription(),

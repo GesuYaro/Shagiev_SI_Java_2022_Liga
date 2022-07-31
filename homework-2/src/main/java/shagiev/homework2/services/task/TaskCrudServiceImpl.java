@@ -2,43 +2,43 @@ package shagiev.homework2.services.task;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import shagiev.homework2.dto.task.TaskInfoDTO;
-import shagiev.homework2.dto.task.TaskRequestDTO;
+import shagiev.homework2.dto.task.TaskInfoDto;
+import shagiev.homework2.dto.task.TaskRequestDto;
 import shagiev.homework2.model.task.Task;
 
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class TaskCRUDServiceImpl implements TaskCRUDService {
+public class TaskCrudServiceImpl implements TaskCrudService {
 
     private final TaskService taskService;
-    private final TaskDTOConverter taskDTOConverter;
+    private final TaskDtoConverter taskDTOConverter;
 
     @Override
-    public List<TaskInfoDTO> getAll() {
+    public List<TaskInfoDto> getAll() {
         List<Task> tasks = taskService.getAllTasks();
-        return taskDTOConverter.toTaskInfoDTOList(tasks);
+        return taskDTOConverter.toTaskInfoDtoList(tasks);
     }
 
     @Override
-    public TaskInfoDTO getConcrete(int id) {
+    public TaskInfoDto getConcrete(int id) {
         Task task = taskService.getTaskById(id);
         if (task != null) {
-            return taskDTOConverter.toTaskInfoDTO(task);
+            return taskDTOConverter.toTaskInfoDto(task);
         } else {
             return null;
         }
     }
 
     @Override
-    public TaskInfoDTO save(TaskRequestDTO taskRequestDTO) {
+    public TaskInfoDto save(TaskRequestDto taskRequestDTO) {
         Task task = taskService.save(taskRequestDTO);
-        return taskDTOConverter.toTaskInfoDTO(task);
+        return taskDTOConverter.toTaskInfoDto(task);
     }
 
     @Override
-    public int update(int id, TaskRequestDTO taskRequestDTO) {
+    public int update(int id, TaskRequestDto taskRequestDTO) {
         return taskService.updateTask(id, taskRequestDTO.getHeader(),
                 taskRequestDTO.getDescription(), taskRequestDTO.getDate(),
                 taskRequestDTO.getStatus(), taskRequestDTO.getUserId());
@@ -50,9 +50,9 @@ public class TaskCRUDServiceImpl implements TaskCRUDService {
     }
 
     @Override
-    public List<TaskInfoDTO> getByUserId(int id) {
+    public List<TaskInfoDto> getByUserId(int id) {
         List<Task> tasks = taskService.getTasksByUserId(id);
-        return taskDTOConverter.toTaskInfoDTOList(tasks);
+        return taskDTOConverter.toTaskInfoDtoList(tasks);
     }
 
 }

@@ -2,7 +2,7 @@ package shagiev.homework2.services.console.managers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import shagiev.homework2.dto.user.UserRequestDTO;
+import shagiev.homework2.dto.user.UserRequestDto;
 import shagiev.homework2.model.user.User;
 import shagiev.homework2.services.user.UserService;
 
@@ -15,7 +15,7 @@ public class UserService2UserManagerAdapter implements UserManager {
     private final UserService userService;
 
     @Override
-    public void addUser(UserRequestDTO user) {
+    public void addUser(UserRequestDto user) {
         userService.save(user);
     }
 
@@ -30,7 +30,7 @@ public class UserService2UserManagerAdapter implements UserManager {
     }
 
     @Override
-    public void updateUser(int id, UserRequestDTO user) {
+    public void updateUser(int id, UserRequestDto user) {
         userService.updateName(id, user.getName());
     }
 

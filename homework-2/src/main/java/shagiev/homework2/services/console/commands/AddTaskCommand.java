@@ -2,7 +2,7 @@ package shagiev.homework2.services.console.commands;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import shagiev.homework2.dto.command.CommandResponseDTO;
+import shagiev.homework2.dto.command.CommandResponseDto;
 import shagiev.homework2.services.console.managers.TaskFactory;
 import shagiev.homework2.services.console.managers.TaskManager;
 
@@ -15,7 +15,7 @@ public class AddTaskCommand implements Command {
     private final TaskManager taskManager;
 
     @Override
-    public CommandResponseDTO execute(String[] args) {
+    public CommandResponseDto execute(String[] args) {
         if (args != null && args.length >= 5) {
             String header = args[0];
             String description = args[1];
@@ -26,7 +26,7 @@ public class AddTaskCommand implements Command {
         } else {
             throw new NotEnoughArgumentsException();
         }
-        return new CommandResponseDTO("ok");
+        return new CommandResponseDto("ok");
     }
 
     @Override

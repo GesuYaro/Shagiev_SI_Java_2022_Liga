@@ -2,14 +2,13 @@ package shagiev.homework2.services.console.commands;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import shagiev.homework2.dto.task.TaskRequestDTO;
-import shagiev.homework2.model.task.Task;
+import shagiev.homework2.dto.command.CommandResponseDto;
+import shagiev.homework2.dto.task.TaskRequestDto;
 import shagiev.homework2.model.task.TaskStatus;
 import shagiev.homework2.services.console.managers.TaskFactory;
 import shagiev.homework2.services.console.managers.TaskManager;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,9 +30,9 @@ class AddTaskCommandTest {
 
     @Test
     void execute_validArgs_validBehaviour() {
-        boolean result = command.execute(getValidArgs());
+        CommandResponseDto result = command.execute(getValidArgs());
         Mockito.verify(taskManagerMock).addTask(getValidTaskDTO());
-        assertFalse(result);
+        assertEquals(result);
     }
 
     @Test
@@ -45,8 +44,8 @@ class AddTaskCommandTest {
         return "Test Testtestest 19.09.1980 done 2".split(" ");
     }
 
-    TaskRequestDTO getValidTaskDTO() {
-        return new TaskRequestDTO(1, "Test", "Testtestest", new GregorianCalendar(1980, Calendar.SEPTEMBER, 19).getTime(), TaskStatus.DONE, 2);
+    TaskRequestDto getValidTaskDTO() {
+        return new TaskRequestDto(1, "Test", "Testtestest", new GregorianCalendar(1980, Calendar.SEPTEMBER, 19).getTime(), TaskStatus.DONE, 2);
     }
 
     String[] getNotEnoughArgs() {

@@ -1,14 +1,14 @@
 package shagiev.homework2.services.console.commands;
 
 import org.springframework.stereotype.Component;
-import shagiev.homework2.dto.command.CommandResponseDTO;
+import shagiev.homework2.dto.command.CommandResponseDto;
 
 @Component
 public class ExitCommand implements Command {
 
     @Override
-    public CommandResponseDTO execute(String[] args) {
-        return new CommandResponseDTO();
+    public CommandResponseDto execute(String[] args) {
+        return new CommandResponseDto();
     }
 
     @Override

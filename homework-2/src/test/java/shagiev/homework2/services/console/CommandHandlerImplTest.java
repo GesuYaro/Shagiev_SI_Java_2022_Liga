@@ -3,8 +3,7 @@ package shagiev.homework2.services.console;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import shagiev.homework2.dto.command.CommandResponseDTO;
-import shagiev.homework2.services.console.commands.AddTaskCommand;
+import shagiev.homework2.dto.command.CommandResponseDto;
 import shagiev.homework2.services.console.commands.Command;
 import shagiev.homework2.services.console.commands.CommandName;
 import shagiev.homework2.services.console.commands.NotEnoughArgumentsException;
@@ -12,8 +11,6 @@ import shagiev.homework2.services.console.commands.NotEnoughArgumentsException;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class CommandHandlerImplTest {
 
@@ -25,7 +22,7 @@ class CommandHandlerImplTest {
 
     {
         Mockito.when(addTaskCommandMock.getName()).thenReturn(CommandName.ADD_TASK);
-        Mockito.when(addTaskCommandMock.execute(getValidCommandArgs())).thenReturn(new CommandResponseDTO());
+        Mockito.when(addTaskCommandMock.execute(getValidCommandArgs())).thenReturn(new CommandResponseDto());
         Mockito.when(addTaskCommandMock.execute(getNotEnoughArguments())).thenThrow(new NotEnoughArgumentsException());
         Mockito.when(clearCommandMock.getName()).thenReturn(CommandName.CLEAR);
         commandList = new ArrayList<>();

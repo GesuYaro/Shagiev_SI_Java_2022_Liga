@@ -1,7 +1,7 @@
 package shagiev.homework2.services.console.commands;
 
 import org.springframework.stereotype.Component;
-import shagiev.homework2.dto.command.CommandResponseDTO;
+import shagiev.homework2.dto.command.CommandResponseDto;
 
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +20,7 @@ public class HelpCommand implements Command {
     }
 
     @Override
-    public CommandResponseDTO execute(String[] args) {
+    public CommandResponseDto execute(String[] args) {
         StringBuilder stringBuilder = new StringBuilder();
         for (CommandName commandName : commandMap.keySet()) {
             stringBuilder.append(commandName.name());
@@ -32,7 +32,7 @@ public class HelpCommand implements Command {
             }
             stringBuilder.append("\n");
         }
-        return new CommandResponseDTO(stringBuilder.toString());
+        return new CommandResponseDto(stringBuilder.toString());
     }
 
     @Override

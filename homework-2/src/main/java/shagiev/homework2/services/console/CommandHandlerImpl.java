@@ -2,8 +2,7 @@ package shagiev.homework2.services.console;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import shagiev.homework2.dto.command.CommandResponseDTO;
-import shagiev.homework2.dto.user.UserInfoDTO;
+import shagiev.homework2.dto.command.CommandResponseDto;
 import shagiev.homework2.services.console.commands.Command;
 import shagiev.homework2.services.console.commands.CommandName;
 import shagiev.homework2.services.console.commands.NotEnoughArgumentsException;
@@ -47,7 +46,7 @@ public class CommandHandlerImpl implements CommandHandler {
             if (key != null) {
                 if (commandMap.containsKey(key)) {
                     try {
-                        CommandResponseDTO responseDTO = commandMap.get(CommandName.valueOf(commandPart.toUpperCase())).execute(args);
+                        CommandResponseDto responseDTO = commandMap.get(CommandName.valueOf(commandPart.toUpperCase())).execute(args);
                         addResponseToStringBuilder(responseDTO, responseStringBuilder);
                     } catch (NotEnoughArgumentsException | NumberFormatException e) {
                         responseStringBuilder.append("Argument error. ");
@@ -64,7 +63,7 @@ public class CommandHandlerImpl implements CommandHandler {
         return responseStringBuilder.toString();
     }
 
-    private void addResponseToStringBuilder(CommandResponseDTO commandResponseDTO, StringBuilder stringBuilder) {
+    private void addResponseToStringBuilder(CommandResponseDto commandResponseDTO, StringBuilder stringBuilder) {
         if (commandResponseDTO.getMessage() != null) {
             stringBuilder.append(commandResponseDTO.getMessage());
             stringBuilder.append("\n");

@@ -2,8 +2,7 @@ package shagiev.homework2.services.console.commands;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import shagiev.homework2.dto.user.UserRequestDTO;
-import shagiev.homework2.model.user.User;
+import shagiev.homework2.dto.user.UserRequestDto;
 import shagiev.homework2.services.console.managers.UserFactory;
 import shagiev.homework2.services.console.managers.UserManager;
 
@@ -37,8 +36,8 @@ class UpdateUserCommandTest {
         return "1 Test".split(" ");
     }
 
-    UserRequestDTO getValidUser() {
-        return new UserRequestDTO(1, "Test");
+    UserRequestDto getValidUser() {
+        return new UserRequestDto(1, "Test");
     }
 
     int getValidId() {

@@ -2,9 +2,9 @@ package shagiev.homework2.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import shagiev.homework2.dto.task.TaskInfoDTO;
-import shagiev.homework2.dto.task.TaskRequestDTO;
-import shagiev.homework2.services.task.TaskCRUDService;
+import shagiev.homework2.dto.task.TaskInfoDto;
+import shagiev.homework2.dto.task.TaskRequestDto;
+import shagiev.homework2.services.task.TaskCrudService;
 
 import java.util.List;
 
@@ -13,31 +13,31 @@ import java.util.List;
 @RequestMapping("/tasks")
 public class TaskController {
 
-    private final TaskCRUDService taskCRUDService;
+    private final TaskCrudService taskCrudService;
 
     @GetMapping
-    public List<TaskInfoDTO> getTasks() {
-        return taskCRUDService.getAll();
+    public List<TaskInfoDto> getTasks() {
+        return taskCrudService.getAll();
     }
 
     @GetMapping("/{id}")
-    public TaskInfoDTO getTask(@PathVariable int id) {
-        return taskCRUDService.getConcrete(id);
+    public TaskInfoDto getTask(@PathVariable int id) {
+        return taskCrudService.getConcrete(id);
     }
 
     @PostMapping
-    public TaskInfoDTO saveTask(@RequestBody TaskRequestDTO taskRequestDTO) {
-        return taskCRUDService.save(taskRequestDTO);
+    public TaskInfoDto saveTask(@RequestBody TaskRequestDto taskRequestDTO) {
+        return taskCrudService.save(taskRequestDTO);
     }
 
     @PutMapping("/{id}")
-    public int updateTask(@PathVariable int id, @RequestBody TaskRequestDTO taskRequestDTO) {
-        return taskCRUDService.update(id, taskRequestDTO);
+    public int updateTask(@PathVariable int id, @RequestBody TaskRequestDto taskRequestDTO) {
+        return taskCrudService.update(id, taskRequestDTO);
     }
 
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable int id) {
-        taskCRUDService.delete(id);
+        taskCrudService.delete(id);
     }
 
 }

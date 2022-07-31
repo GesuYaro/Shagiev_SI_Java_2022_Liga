@@ -2,7 +2,7 @@ package shagiev.homework2.services.console.commands;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
-import shagiev.homework2.dto.command.CommandResponseDTO;
+import shagiev.homework2.dto.command.CommandResponseDto;
 import shagiev.homework2.services.console.managers.TaskManager;
 import shagiev.homework2.services.console.managers.UserManager;
 
@@ -14,15 +14,15 @@ public class ClearCommand implements Command {
     private final UserManager userManager;
 
     @Override
-    public CommandResponseDTO execute(String[] args) {
+    public CommandResponseDto execute(String[] args) {
         if (args == null || args.length < 1) {
             userManager.clear();
             taskManager.clearAll();
-            return new CommandResponseDTO("");
+            return new CommandResponseDto("");
         }
         int id = Integer.parseInt(args[0]);
         taskManager.clear(id);
-        return new CommandResponseDTO("ok");
+        return new CommandResponseDto("ok");
     }
 
     @Override

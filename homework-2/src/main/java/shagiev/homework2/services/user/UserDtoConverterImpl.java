@@ -1,7 +1,7 @@
 package shagiev.homework2.services.user;
 
 import org.springframework.stereotype.Service;
-import shagiev.homework2.dto.user.UserInfoDTO;
+import shagiev.homework2.dto.user.UserInfoDto;
 import shagiev.homework2.model.task.Task;
 import shagiev.homework2.model.user.User;
 
@@ -9,21 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class UserDTOConverterImpl implements UserDTOConverter {
+public class UserDtoConverterImpl implements UserDtoConverter {
 
     @Override
-    public List<UserInfoDTO> toUserInfoDTOList(List<User> users) {
-        List<UserInfoDTO> dtos = new ArrayList<>();
+    public List<UserInfoDto> toUserInfoDtoList(List<User> users) {
+        List<UserInfoDto> dtos = new ArrayList<>();
         for (User user : users) {
-            dtos.add(toUserInfoDTO(user));
+            dtos.add(toUserInfoDto(user));
         }
         return dtos;
     }
 
     @Override
-    public UserInfoDTO toUserInfoDTO(User user) {
+    public UserInfoDto toUserInfoDto(User user) {
         List<Integer> taskIds = getTaskIds(user);
-        return new UserInfoDTO(user.getId(), user.getName(), taskIds);
+        return new UserInfoDto(user.getId(), user.getName(), taskIds);
     }
 
     private List<Integer> getTaskIds(User user) {
